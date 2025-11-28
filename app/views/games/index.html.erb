@@ -1,0 +1,53 @@
+<h1>Rock — Paper — Scissors</h1>
+
+<% if flash[:notice] %>
+  <p style="color: green"><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:alert] %>
+  <p style="color: darkred"><%= flash[:alert] %></p>
+<% end %>
+
+<form action="/play" method="post">
+  <%= csrf_meta_tags %>
+  <button name="choice" value="rock" class="btn btn-lg btn-secondary rps-btn rock">✊ Rock</button>
+  <button name="choice" value="paper" class="btn btn-lg btn-primary rps-btn paper">✋ Paper</button>
+  <button name="choice" value="scissors" class="btn btn-lg btn-success rps-btn scissors">✌️ Scissors</button>
+</form>
+
+<h3>Recent Games :</h3>
+
+<table border="1" cellpadding="6">
+  <tr>
+    <th>You</th>
+    <th>Computer</th>
+    <th>Result</th>
+  </tr>
+  
+  <tr>
+    <td><%= rps_icon(@games.first.user_choice) if @games.first %></td>
+    <td><%= rps_icon(@games.first.computer_choice) if @games.first %></td>
+    <td><%= @games.first.result.humanize if @games.first %></td>
+  </tr>
+  <tr><td colspan="4">Total games : <%= @games.count %></td></tr>
+</table>
+
+<h3>Score :</h3>
+<table border="1" width="190">
+  <tr>
+    <td>You</td><td><%= @score[:user] %> </td>
+  </tr>
+  <tr>
+    <td>Computer</td><td><%= @score[:computer] %> </td>
+  </tr>
+  <tr>
+    <td>Ties</td><td><%= @score[:ties] %> </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+    <form action="/reset" method="post" style="display:inline">
+      <%= csrf_meta_tags %>
+      <button type="submit">Clear History</button>
+    </form>
+  </td>
+  </tr>
+</table>
