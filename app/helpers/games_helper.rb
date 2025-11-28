@@ -2,7 +2,6 @@ module GamesHelper
   def rps_icon(number)
     case number
     when "rock"
-      # FontAwesome example
       content_tag(:b, "✊ Rock")
 
     when "paper"

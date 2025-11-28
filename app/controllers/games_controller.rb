@@ -30,18 +30,4 @@ class GamesController < ApplicationController
     redirect_to root_path, notice: 'History cleared.'
   end
 
-  private
-
-  # def outcome(user, comp)
-  #   return :tie if user == comp
-
-  #   wins = {
-  #     'rock' => 'scissors',
-  #     'paper' => 'rock',
-  #     'scissors' => 'paper'
-  #   }
-
-  #   wins[user] == comp ? :user_win : :computer_win
-  # end
-
 end
